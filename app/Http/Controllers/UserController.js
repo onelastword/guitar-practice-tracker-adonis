@@ -40,6 +40,16 @@ class UserController {
     response.redirect('/app')
   }
 
+  * destroy (request, response) {
+    yield request.auth.logout()
+
+    yield request.with({
+      success: 'User logged out!'
+    }).flash()
+
+    response.redirect('login')
+  }
+
 }
 
 module.exports = UserController

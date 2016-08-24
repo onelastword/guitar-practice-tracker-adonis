@@ -25,6 +25,8 @@ Route.post('/signup', 'UserController.store')
 Route.get('/login', 'SessionController.create')
 Route.post('/login', 'SessionController.store')
 
+Route.any('/logout', 'SessionController.destroy')
+
 Route.resource('/songs', 'SongController')
   .except('delete')
   .middleware('auth')
