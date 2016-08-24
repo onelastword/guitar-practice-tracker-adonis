@@ -17,3 +17,8 @@ button.card-footer-item {
 .song-actions-link + .song-actions-link {
   margin-left: 0.3rem;
 }
+
+.hero.is-primary a.nav-item {
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+}

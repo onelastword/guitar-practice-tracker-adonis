@@ -1,0 +1,39 @@
+<div class="hero is-primary">
+  <nav class="nav is-primary">
+    <h1 class="nav-left">
+      <a class="nav-item is-brand title" href="/">
+        Guitar Practice Thing
+      </a>
+    </h1>
+
+    <div class="nav-center">
+    </div>
+
+    <span class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+
+    <div class="nav-right nav-menu">
+      {% if currentUser %}
+        <a class="nav-item" href="/songs">
+          Songs
+        </a>
+        <a class="nav-item" href="/set-lists">
+          My Set Lists
+        </a>
+        <a class="nav-item" href="/logout">
+          Logout
+        </a>
+      {% else %}
+        <a class="nav-item" href="/signup">
+          Sign Up
+        </a>
+        <a class="nav-item" href="/login">
+          Login
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+</div>
