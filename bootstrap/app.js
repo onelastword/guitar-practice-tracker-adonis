@@ -28,7 +28,7 @@ const providers = [
   'adonis-lucid/providers/LucidProvider',
   'adonis-middleware/providers/AppMiddlewareProvider',
   'adonis-auth/providers/AuthManagerProvider',
-  'adonis-validation-provider/providers/ValidatorProvider'
+  'adonis-validation-provider/providers/ValidatorProvider',
 ]
 
 /*
@@ -48,7 +48,8 @@ const aceProviders = [
   'adonis-lucid/providers/SeederProvider',
   'adonis-ace/providers/CommandProvider',
   'adonis-commands/providers/GeneratorsProvider',
-  'adonis-commands/providers/ReplProvider'
+  'adonis-commands/providers/ReplProvider',
+  'adonis-generators/providers/GeneratorsProvider',
 ]
 
 /*
@@ -106,7 +107,11 @@ const commands = [
   'Adonis/Commands/Migration:Reset',
   'Adonis/Commands/DB:Seed',
   'Adonis/Commands/Migration:Status',
-  'Adonis/Commands/Key:Generate'
+  'Adonis/Commands/Key:Generate',
+
+  'AdonisGenerators/Generate:Migration',
+  'AdonisGenerators/Generate:Model',
+  'AdonisGenerators/Generate:Controller',
 ]
 
 module.exports = { providers, aceProviders, aliases, commands }
