@@ -1,0 +1,45 @@
+{% extends 'master' %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
+        <form method="POST" class="card is-fullwidth">
+          {{ csrfField }}
+
+          <div class="card-header">
+            <h2 class="card-header-title">
+              Login
+            </h2>
+          </div>
+          <div class="card-content">
+            {% for error in flashMessages.errors %}
+            <div class="notification is-danger">
+              <button class="delete"></button>
+              <p>{{error.message}}</p>
+            </div>
+            {% endfor %}
+
+
+            <label class="label">Email</label>
+            <p class="control">
+              {{ form.text('email', null, {placeholder: 'Email', class: 'input'}) }}
+            </p>
+
+            <label class="label">Password</label>
+            <p class="control">
+              {{ form.password('password', null, {placeholder: 'Password', class: 'input'}) }}
+            </p>
+          </div>
+
+          <footer class="card-footer">
+            <a class="card-footer-item" href="/signup">Need an account?</a>
+            <button class="card-footer-item">Save</button>
+          </footer>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
