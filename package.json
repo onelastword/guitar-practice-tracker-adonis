@@ -18,6 +18,7 @@
     "adonis-framework": "^3.0.1",
     "adonis-lucid": "^3.0.3",
     "adonis-middleware": "^1.0.7",
+    "sqlite3": "^3.1.4",
     "youch": "^1.0.1"
   },
   "autoload": {
