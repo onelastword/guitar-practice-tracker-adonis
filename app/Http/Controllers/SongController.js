@@ -1,6 +1,7 @@
 'use strict';
 
 const Song = use('App/Model/Song');
+const Validator = use('Validator');
 
 const rules = {
   title: 'required',
@@ -13,7 +14,11 @@ class SongController {
   * index(request, response) {
     const songs = yield Song.with().fetch();
 
-    response.send(songs);
+    yield response.sendView('song.index', songs);
+  }
+
+  * create(request, response) {
+    yield response.sendView('song.create');
   }
 
   * store(request, response) {
@@ -33,8 +38,12 @@ class SongController {
     }
 
     const song = yield Song.create(input);
+    yield request.with({
+        success: 'Song Added!',
+      })
+      .flash()
 
-    response.send(song);
+    response.redirect('/songs');
   }
 
   * show(request, response) {

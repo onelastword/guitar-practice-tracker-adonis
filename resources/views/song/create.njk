@@ -1,0 +1,50 @@
+{% extends 'master' %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
+        <form action="/songs" method="POST" class="card is-fullwidth">
+          {{ csrfField }}
+
+          <div class="card-header">
+            <h2 class="card-header-title">
+              What's Your Favorite Song?
+            </h2>
+          </div>
+          <div class="card-content">
+            {% for error in flashMessages.errors %}
+            <div class="notification is-danger">
+              <button class="delete"></button>
+              <p>{{error.message}}</p>
+            </div>
+            {% endfor %}
+
+
+            <label class="label">Artist</label>
+            <p class="control">
+              <input class="input" type="text" value="{{ old('artist') }}" placeholder="Artist" name="artist">
+            </p>
+
+            <label class="label">Title</label>
+            <p class="control">
+              <input class="input" type="text" value="{{ old('title') }}" placeholder="Title" name="title">
+            </p>
+
+            <label class="label">Spotify Link</label>
+            <p class="control">
+              <input class="input" type="text" value="{{ old('spotify_link') }}" placeholder="Spotify Link" name="spotify_link">
+            </p>
+          </div>
+
+          <footer class="card-footer">
+            <a class="card-footer-item" href="/songs">Back</a>
+            <button class="card-footer-item">Save</button>
+          </footer>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
