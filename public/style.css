@@ -13,3 +13,7 @@ button.card-footer-item {
   justify-content: space-between;
   align-items: center;
 }
+
+.song-actions-link + .song-actions-link {
+  margin-left: 0.3rem;
+}

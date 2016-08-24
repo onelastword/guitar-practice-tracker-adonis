@@ -1,0 +1,32 @@
+{% extends "master" %} {% block content %}
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
+        <nav class="panel">
+          <div class="panel-heading is-flex is-space-between">
+            <h2 class="panel-heading-title">Songs</h2>
+            <a href="/songs/create" class="button is-success">
+              <span class="fa fa-plus"></span>
+            </a>
+          </div>
+
+          {% for song in songs %}
+            <div class="panel-block" href="/songs/{{song.id}}/edit">
+              <div class="is-flex is-space-between">
+                <p class="song-details">
+                  <strong>{{song.artist}}</strong> - {{song.title}}
+                </p>
+                <div class="song-actions">
+                  <a href="/songs/{{ song.id }}/edit" class="button"><span class="fa fa-pencil"></span></a>
+                  <a href="{{ song.spotify_link }}" class="button is-success" target="_blank" rel="noopener"><span class="fa fa-spotify"></span></a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

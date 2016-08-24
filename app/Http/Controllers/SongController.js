@@ -14,7 +14,7 @@ class SongController {
   * index(request, response) {
     const songs = yield Song.with().fetch();
 
-    yield response.sendView('song.index', songs);
+    yield response.sendView('song.index', { songs: songs.toJSON() });
   }
 
   * create(request, response) {
@@ -48,9 +48,15 @@ class SongController {
 
   * show(request, response) {
     const id = request.param('id');
+
+    response.redirect(`/songs/${id}/edit`);
+  }
+
+  * edit(request, response) {
+    const id = request.param('id');
     const song = yield Song.with().where({ id }).firstOrFail();
 
-    response.send(song);
+    yield response.sendView('song.edit', { song: song.toJSON() });
   }
 
   * update(request, response) {
@@ -74,7 +80,12 @@ class SongController {
     song.fill(input);
     yield song.save(input);
 
-    response.send(song);
+    yield request.with({
+        success: `"${song.title}" Updated!`,
+      })
+      .flash()
+
+    response.redirect('/songs');
   }
 
   * destroy(request, response) {
