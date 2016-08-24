@@ -24,3 +24,5 @@ Route.post('/signup', 'UserController.store')
 
 Route.get('/login', 'SessionController.create')
 Route.post('/login', 'SessionController.store')
+
+Route.resource('/songs', 'SongController').middleware('auth')
