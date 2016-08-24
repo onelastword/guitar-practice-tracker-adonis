@@ -1,0 +1,55 @@
+{% extends 'master' %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
+        <form method="POST" class="card is-fullwidth">
+          {{ csrfField }}
+
+          <div class="card-header">
+            <h2 class="card-header-title">
+              Create an Account!
+            </h2>
+          </div>
+          <div class="card-content">
+            {% for error in flashMessages.errors %}
+            <div class="notification is-danger">
+              <button class="delete"></button>
+              <p>{{error.message}}</p>
+            </div>
+            {% endfor %}
+
+
+            <label class="label">Email</label>
+            <p class="control">
+              <input class="input" type="email" value="{{old( 'email') }}" placeholder="Email" name="email">
+            </p>
+
+            <label class="label">Username</label>
+            <p class="control">
+              <input class="input" type="text" value="{{old( 'username') }}" placeholder="Username" name="username">
+            </p>
+
+            <label class="label">Password</label>
+            <p class="control">
+              <input class="input" type="password" placeholder="Email" name="password">
+            </p>
+
+            <label class="label">Password Confirmation</label>
+            <p class="control">
+              <input class="input" type="password" placeholder="Password Confirmation" name="password_confirmation">
+            </p>
+          </div>
+
+          <footer class="card-footer">
+            <a class="card-footer-item" href="/login">Already have an account?</a>
+            <button class="card-footer-item">Save</button>
+          </footer>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
