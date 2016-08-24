@@ -112,6 +112,8 @@ const commands = [
   'AdonisGenerators/Generate:Migration',
   'AdonisGenerators/Generate:Model',
   'AdonisGenerators/Generate:Controller',
+  'AdonisGenerators/Generate:JsonApiView',
+  'AdonisGenerators/Generate:JsonApiResource',
 ]
 
 module.exports = { providers, aceProviders, aliases, commands }

@@ -30,3 +30,6 @@ Route.any('/logout', 'SessionController.destroy')
 Route.resource('/songs', 'SongController')
   .except('delete')
   .middleware('auth')
+
+Route.resource('/set-lists', 'SetListController')
+  .middleware('auth')
