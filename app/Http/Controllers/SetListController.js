@@ -28,7 +28,7 @@ class SetListController {
 
   * show(request, response) {
     const id = request.param('id');
-    const setList = yield SetList.with('user', 'practiceSongs').where({ id }).firstOrFail();
+    const setList = yield SetList.with('practiceSongs', 'practiceSongs.song').where({ id }).firstOrFail();
 
     yield response.sendView('set-list.show', {setList: setList.toJSON()});
   }
@@ -37,7 +37,7 @@ class SetListController {
     const id = request.param('id');
     const input = request.only(attributes);
 
-    const setList = yield SetList.with('user', 'practiceSongs').where({ id }).firstOrFail();
+    const setList = yield SetList.with('practiceSongs').where({ id }).firstOrFail();
     setList.fill(input);
     yield setList.save();
 

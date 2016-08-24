@@ -33,3 +33,6 @@ Route.resource('/songs', 'SongController')
 
 Route.resource('/set-lists', 'SetListController')
   .middleware('auth')
+
+Route.get('/set-lists/:id/add-song', 'SetList/PracticeSongController.create')
+Route.post('/set-lists/:id/add-song', 'SetList/PracticeSongController.store')
