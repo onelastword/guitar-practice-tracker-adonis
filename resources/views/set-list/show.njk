@@ -1,31 +1,31 @@
-{% extends "master" %} {% block content %}
-<section class="section">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-10 is-offset-1">
-        <nav class="panel">
-          <div class="panel-heading is-flex is-space-between">
-            <h2 class="panel-heading-title">{{setList.title}} - {{setList.date}}</h2>
-            <a href="/set-lists/{{setList.id}}/add-song" class="button is-success">
-              <span class="fa fa-plus"></span>
-            </a>
-          </div>
+{% extends "master" %}
 
-          {% for practiceSong in setList.practiceSongs %}
-            <div class="panel-block" href="/set-lists/{{setList.id}}/edit">
-              <div class="is-flex is-space-between">
-                <p class="song-details">
-                  {{practiceSong.song.title}}
-                </p>
-                <div class="song-actions">
-                  <a href="{{ practiceSong.song.spotify_link }}" class="button is-success" target="_blank" rel="noopener"><span class="fa fa-spotify"></span></a>
-                </div>
+{% block content %}
+<div class="container">
+  <div class="columns">
+    <div class="column is-10 is-offset-1">
+      <nav class="panel">
+        <div class="panel-heading is-flex is-space-between">
+          <h2 class="panel-heading-title">{{setList.title}} - {{setList.date}}</h2>
+          <a href="/set-lists/{{setList.id}}/add-song" class="button is-success">
+            <span class="fa fa-plus"></span>
+          </a>
+        </div>
+
+        {% for practiceSong in setList.practiceSongs %}
+          <div class="panel-block" href="/set-lists/{{setList.id}}/edit">
+            <div class="is-flex is-space-between">
+              <p class="song-details">
+                {{practiceSong.song.title}}
+              </p>
+              <div class="song-actions">
+                <a href="{{ practiceSong.song.spotify_link }}" class="button is-success" target="_blank" rel="noopener"><span class="fa fa-spotify"></span></a>
               </div>
             </div>
-          {% endfor %}
-        </nav>
-      </div>
+          </div>
+        {% endfor %}
+      </nav>
     </div>
   </div>
-</section>
+</div>
 {% endblock %}

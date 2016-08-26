@@ -1,44 +1,42 @@
 {% extends 'master' %}
 
 {% block content %}
-<section class="section">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-10 is-offset-1">
-        <form action="/set-lists" method="POST" class="card is-fullwidth">
-          {{ csrfField }}
+<div class="container">
+  <div class="columns">
+    <div class="column is-10 is-offset-1">
+      <form action="/set-lists" method="POST" class="card is-fullwidth">
+        {{ csrfField }}
 
-          <div class="card-header">
-            <h2 class="card-header-title">
-              Let's Start a Set List!
-            </h2>
+        <div class="card-header">
+          <h2 class="card-header-title">
+            Let's Start a Set List!
+          </h2>
+        </div>
+        <div class="card-content">
+          {% for error in flashMessages.errors %}
+          <div class="notification is-danger">
+            <button class="delete"></button>
+            <p>{{error.message}}</p>
           </div>
-          <div class="card-content">
-            {% for error in flashMessages.errors %}
-            <div class="notification is-danger">
-              <button class="delete"></button>
-              <p>{{error.message}}</p>
-            </div>
-            {% endfor %}
+          {% endfor %}
 
-            <label class="label">Title</label>
-            <p class="control">
-              <input class="input" type="text" value="{{ old('title') }}" placeholder="Title" name="title">
-            </p>
+          <label class="label">Title</label>
+          <p class="control">
+            <input class="input" type="text" value="{{ old('title') }}" placeholder="Title" name="title">
+          </p>
 
-            <label class="label">Date</label>
-            <p class="control">
-              <input class="input" type="date" value="{{ old('date') }}" placeholder="Date" name="date">
-            </p>
-          </div>
+          <label class="label">Date</label>
+          <p class="control">
+            <input class="input" type="date" value="{{ old('date') }}" placeholder="Date" name="date">
+          </p>
+        </div>
 
-          <footer class="card-footer">
-            <a class="card-footer-item" href="/songs">Back</a>
-            <button class="card-footer-item">Save</button>
-          </footer>
-        </form>
-      </div>
+        <footer class="card-footer">
+          <a class="card-footer-item" href="/songs">Back</a>
+          <button class="card-footer-item">Save</button>
+        </footer>
+      </form>
     </div>
   </div>
-</section>
+</div>
 {% endblock %}

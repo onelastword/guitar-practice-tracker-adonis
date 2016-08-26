@@ -1,50 +1,48 @@
 {% extends 'master' %}
 
 {% block content %}
-<section class="section">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-10 is-offset-1">
-        <form action="/songs/{{song.id}}?_method=PUT" method="POST" class="card is-fullwidth">
-          {{ csrfField }}
+<div class="container">
+  <div class="columns">
+    <div class="column is-10 is-offset-1">
+      <form action="/songs/{{song.id}}?_method=PUT" method="POST" class="card is-fullwidth">
+        {{ csrfField }}
 
-          <div class="card-header">
-            <h2 class="card-header-title">
-              What's Your Favorite Song?
-            </h2>
+        <div class="card-header">
+          <h2 class="card-header-title">
+            What's Your Favorite Song?
+          </h2>
+        </div>
+        <div class="card-content">
+          {% for error in flashMessages.errors %}
+          <div class="notification is-danger">
+            <button class="delete"></button>
+            <p>{{error.message}}</p>
           </div>
-          <div class="card-content">
-            {% for error in flashMessages.errors %}
-            <div class="notification is-danger">
-              <button class="delete"></button>
-              <p>{{error.message}}</p>
-            </div>
-            {% endfor %}
+          {% endfor %}
 
 
-            <label class="label">Artist</label>
-            <p class="control">
-              {{ form.text('artist', song.artist, { placeholder: "Artist", class: "input" }) }}
-            </p>
+          <label class="label">Artist</label>
+          <p class="control">
+            {{ form.text('artist', song.artist, { placeholder: "Artist", class: "input" }) }}
+          </p>
 
-            <label class="label">Title</label>
-            <p class="control">
-              {{ form.text('title', song.title, { placeholder: "Title", class: "input" }) }}
-            </p>
+          <label class="label">Title</label>
+          <p class="control">
+            {{ form.text('title', song.title, { placeholder: "Title", class: "input" }) }}
+          </p>
 
-            <label class="label">Spotify Link</label>
-            <p class="control">
-              {{ form.text('spotify_link', song.spotify_link, { placeholder: "Spotify Link", class: "input" }) }}
-            </p>
-          </div>
+          <label class="label">Spotify Link</label>
+          <p class="control">
+            {{ form.text('spotify_link', song.spotify_link, { placeholder: "Spotify Link", class: "input" }) }}
+          </p>
+        </div>
 
-          <footer class="card-footer">
-            <a class="card-footer-item" href="/songs">Back</a>
-            <button class="card-footer-item">Save</button>
-          </footer>
-        </form>
-      </div>
+        <footer class="card-footer">
+          <a class="card-footer-item" href="/songs">Back</a>
+          <button class="card-footer-item">Save</button>
+        </footer>
+      </form>
     </div>
   </div>
-</section>
+</div>
 {% endblock %}
