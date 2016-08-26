@@ -28,6 +28,17 @@ class SessionController {
     response.redirect('/songs')
   }
 
+  * destroy (request, response) {
+    yield request.auth.logout();
+
+    yield request
+      .with({
+        success: 'You have been logged out!'
+      }).flash()
+
+    response.redirect('/login')
+  }
+
 }
 
 module.exports = SessionController
