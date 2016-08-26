@@ -6,7 +6,8 @@ const attributes = ['date', 'title'];
 class SetListController {
 
   * index(request, response) {
-    const setLists = yield SetList.with('practiceSongs').fetch();
+    const setLists = yield SetList.with('practiceSongs')
+      .where({ user_id: request.authUser.id }).fetch();
 
     yield response.sendView('set-list.index', {setLists: setLists.toJSON()});
   }
@@ -17,7 +18,7 @@ class SetListController {
 
   * store(request, response) {
     const input = request.only(attributes);
-    const setList = yield SetList.create(Object.assign({}, input, { user_id: request.authUser }));
+    const setList = yield SetList.create(Object.assign({}, input, { user_id: request.authUser.id }));
 
     yield request.with({
       success: 'Set List Started'
@@ -28,16 +29,36 @@ class SetListController {
 
   * show(request, response) {
     const id = request.param('id');
-    const setList = yield SetList.with('practiceSongs', 'practiceSongs.song').where({ id }).firstOrFail();
+    try {
+      const setList = yield SetList.with('practiceSongs.song').
+        where({ id, user_id: request.authUser.id }).firstOrFail()
 
-    yield response.sendView('set-list.show', {setList: setList.toJSON()});
+    } catch (e) {
+      yield request.with({
+        warning: 'We couldn\'t find that set list...'
+      }).flash();
+
+      response.redirect(`/set-lists`)
+    }
+
+    yield response.sendView('set-list.show', {setList: setList.toJSON()})
   }
 
   * update(request, response) {
     const id = request.param('id');
     const input = request.only(attributes);
 
-    const setList = yield SetList.with('practiceSongs').where({ id }).firstOrFail();
+    try {
+      const setList = yield SetList.with('practiceSongs.song').
+        where({ id, user_id: request.authUser.id }).firstOrFail()
+
+    } catch (e) {
+      yield request.with({
+        warning: 'We couldn\'t find that set list...'
+      }).flash();
+
+      response.redirect(`/set-lists`)
+    }
     setList.fill(input);
     yield setList.save();
 
@@ -47,7 +68,18 @@ class SetListController {
   * destroy(request, response) {
     const id = request.param('id');
 
-    const setList = yield SetList.query().where({ id }).firstOrFail();
+    try {
+      const setList = yield SetList.with('practiceSongs.song').
+        where({ id, user_id: request.authUser.id }).firstOrFail()
+
+    } catch (e) {
+      yield request.with({
+        warning: 'We couldn\'t find that set list...'
+      }).flash();
+
+      response.redirect(`/set-lists`)
+    }
+
     yield setList.delete();
 
     yield request.with({
