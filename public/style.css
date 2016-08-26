@@ -1,3 +1,17 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body > section {
+  flex-grow: 1;
+}
+
+.button.is-outlined {
+  background: none;
+}
+
 button.card-footer-item {
   background: #1fc8db;
   outline: none;
