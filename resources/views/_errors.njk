@@ -1,0 +1,14 @@
+<div class="container alert-container">
+  {% for alertType in ['success', 'warning'] %}
+    {% if old(alertType) %}
+      <div class="columns">
+        <div class="column is-10 is-offset-1">
+          <div class="notification is-{{alertType}}">
+            <button class="delete"></button>
+            <p>{{ old(alertType) }}</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>

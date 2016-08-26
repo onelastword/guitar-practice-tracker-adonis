@@ -16,8 +16,13 @@
 <body>
 
   {% include "_nav" %}
+  <section class="section">
+    {% include "_errors" %}
 
-  {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
+  </section>
+
+<script src="app.js" charset="utf-8"></script>
 
 </body>
 </html>
