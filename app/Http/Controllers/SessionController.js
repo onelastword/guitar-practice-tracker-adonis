@@ -25,7 +25,7 @@ class SessionController {
         warning: 'Email and password do not match!'
       }).flash()
 
-    response.redirect('/app')
+    response.redirect('/songs')
   }
 
 }
