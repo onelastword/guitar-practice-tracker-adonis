@@ -37,7 +37,7 @@ class UserController {
     yield request.auth.login(user)
     yield request.with({ success: 'User created!' }).flash()
 
-    response.redirect('/app')
+    response.redirect('/songs')
   }
 
   * destroy (request, response) {
