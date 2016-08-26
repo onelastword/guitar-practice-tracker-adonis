@@ -2,7 +2,7 @@ __Guitar Practice Tracker__
 
 _This is an app for planning out guitar practice sessions_
 
-#   (2016-08-25)
+# v1.0.0  (2016-08-25)
 
 
 
@@ -18,6 +18,8 @@ _This is an app for planning out guitar practice sessions_
 
 ## Features
 
+- welcome page
+  ([bf9ee21e](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/bf9ee21e510e49a8683eb8fd01c8b1d64dfa5d36))
 - user limited to their own set-lists
   ([a9845c64](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/a9845c647120771cfb69d8e633e6c56e11b25de1))
 - application alerts
@@ -38,6 +40,24 @@ _This is an app for planning out guitar practice sessions_
   ([e212ece5](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/e212ece5f4607b98707a23903bc11edf0c0ff2d5))
 - User can register
   ([89e23dcb](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/89e23dcb7dd39fbc7c28e99cea81ed9a5fb038fa))
+
+
+## Updated Dependencies
+
+- Add adonis-generators
+  ([0e1c6d5b](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/0e1c6d5bd83c72b91aecb7d2ec9503af4892b03c))
+
+
+## Style
+
+- Remove redundant sections
+  ([49177be7](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/49177be7b819fe774a711e27bc2266fdfadecd3d))
+
+
+## Chore
+
+- Add git-changelog config and changelog
+  ([963a787d](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/963a787da6895ba339c44313f174a62407c8a567))
 
 
 
