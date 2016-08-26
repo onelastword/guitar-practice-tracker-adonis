@@ -4,6 +4,8 @@ const Env = use('Env')
 const Ouch = use('youch')
 const Http = exports = module.exports = {}
 
+const { InvalidLoginException } = require('adonis-auth/src/Exceptions')
+
 /**
  * handle errors occured during a Http request.
  *
@@ -12,6 +14,18 @@ const Http = exports = module.exports = {}
  * @param  {Object} response
  */
 Http.handleError = function * (error, request, response) {
+
+  if (error instanceof InvalidLoginException) {
+    yield request
+      .with({
+        warning: 'You must be logged in to see this route!'
+      }).flash()
+
+    yield request.session.put('auth-back', request.originalUrl())
+
+    return response.redirect('/login')
+  }
+
   /**
    * DEVELOPMENT REPORTER
    */

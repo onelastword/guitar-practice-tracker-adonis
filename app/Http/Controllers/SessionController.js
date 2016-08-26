@@ -25,7 +25,7 @@ class SessionController {
         warning: 'Email and password do not match!'
       }).flash()
 
-    response.redirect('/songs')
+      response.redirect(yield request.session.pull('auth-back', '/songs'))
   }
 
   * destroy (request, response) {
