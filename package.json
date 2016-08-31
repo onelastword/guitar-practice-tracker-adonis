@@ -22,6 +22,7 @@
     "adonis-validation-provider": "^3.0.2",
     "request": "^2.74.0",
     "sqlite3": "^3.1.4",
+    "thunkify": "^2.1.2",
     "youch": "^1.0.1"
   },
   "autoload": {

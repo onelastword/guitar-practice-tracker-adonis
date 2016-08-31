@@ -3233,6 +3233,11 @@
       "from": "through@>=2.3.6 <3.0.0",
       "resolved": "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
     },
+    "thunkify": {
+      "version": "2.1.2",
+      "from": "thunkify@latest",
+      "resolved": "https://registry.npmjs.org/thunkify/-/thunkify-2.1.2.tgz"
+    },
     "thunkify-wrap": {
       "version": "1.0.4",
       "from": "thunkify-wrap@>=1.0.4 <1.1.0",
