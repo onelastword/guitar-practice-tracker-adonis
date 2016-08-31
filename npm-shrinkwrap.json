@@ -1999,7 +1999,7 @@
     },
     "moment": {
       "version": "2.14.1",
-      "from": "moment@>=2.11.2 <3.0.0",
+      "from": "https://registry.npmjs.org/moment/-/moment-2.14.1.tgz",
       "resolved": "https://registry.npmjs.org/moment/-/moment-2.14.1.tgz"
     },
     "mongodb": {

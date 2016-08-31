@@ -1,5 +1,6 @@
 'use strict'
 
+const moment = require('moment')
 const thunkify = require('thunkify')
 const request = require('request')
 const Env = use('Env')
@@ -34,7 +35,21 @@ class ProfileController {
         json: true
       });
 
-      return response.send(socialData)
+      console.log(socialData)
+
+      const expire_time = moment().add(socialData.expires_in, 'seconds')
+
+      request.authUser.fill({
+        expire_time: expire_time.toDate(),
+        access_token: socialData.access_token,
+        refresh_token: socialData.refresh_token,
+      })
+
+      yield request.authUser.save()
+
+      yield request.with({
+        success: 'Spotify login added!',
+      }).flash()
     }
 
     const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=` +
