@@ -35,6 +35,13 @@
           <p class="control">
             <input class="input" type="text" value="{{ old('spotify_link') }}" placeholder="Spotify Link" name="spotify_link">
           </p>
+
+          {% if currentUser.access_token %}
+            <a href="/songs/search-spotify" class="button is-success is-fullwidth">
+              Search Spotify
+              <span class="fa fa-fw fa-spotify"></span>
+            </a>
+          {% endif %}
         </div>
 
         <footer class="card-footer">

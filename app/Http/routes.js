@@ -27,6 +27,10 @@ Route.post('/login', 'SessionController.store')
 
 Route.any('/logout', 'SessionController.destroy')
 
+Route.get('/songs/search-spotify', 'SongSpotifyController.create')
+  .middleware('auth')
+Route.post('/songs/search-spotify', 'SongSpotifyController.store')
+  .middleware('auth')
 Route.resource('/songs', 'SongController')
   .except('delete')
   .middleware('auth')
