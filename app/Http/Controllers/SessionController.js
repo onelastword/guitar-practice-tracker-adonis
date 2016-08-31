@@ -22,7 +22,7 @@ class SessionController {
 
     yield request
       .with({
-        warning: 'Email and password do not match!'
+        success: 'You have logged in!'
       }).flash()
 
       response.redirect(yield request.session.pull('auth-back', '/songs'))
