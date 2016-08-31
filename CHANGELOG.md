@@ -2,6 +2,45 @@ __Guitar Practice Tracker__
 
 _This is an app for planning out guitar practice sessions_
 
+# v2.0.0  (2016-08-30)
+
+
+
+---
+
+## Bug Fixes
+
+- Success message after logging in
+  ([b7f9ce4d](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/b7f9ce4d21573577ae2676137835264b6f9f0d0b))
+
+
+## Features
+
+- user can save songs from spotify suggestions
+  ([8ded138d](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/8ded138d3fcf5573cb0b2a6e8c5a4aae539291ec))
+- user can see search results from spotify
+  ([dbc8b985](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/dbc8b9852cf374ea5adf504627d1dad00774502d))
+- save spotify auth info
+  ([89b5c8ea](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/89b5c8ea57b818d88c6175a88c9ca5e3a10c74c0))
+- profile nav link
+  ([1a132553](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/1a132553369e0d85a8093bc270451f4b67db882f))
+- Social login with spotify
+  ([c13fe955](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/c13fe955020d3974ae21dff13dba3be5db2da249))
+
+
+## Updated Dependencies
+
+- install thunkify for profile
+  ([cbd58c9b](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/cbd58c9b04968f121b8c2615e60349405e4b1707))
+
+
+## Chore
+
+- **release:** 2.0.0 codename(this-one-has-spotify-search)
+  ([b5f68ca7](https://github.com/onelastword/guitar-practice-tracker-adonis/commit/b5f68ca70960c85a803eee3b5c038f6d20959782))
+
+
+
 # v1.0.0  (2016-08-25)
 
 

@@ -3,7 +3,7 @@
   "intro": "This is an app for planning out guitar practice sessions",
   "branch": "",
   "repo_url": "https://github.com/onelastword/guitar-practice-tracker-adonis",
-  "version": "v1.0.0",
+  "version": "v2.0.0",
   "file": "CHANGELOG.md",
   "sections": [
     {
