@@ -1,0 +1,28 @@
+{% extends 'master' %}
+
+{% block content %}
+<div class="container">
+  <div class="columns">
+    <div class="column is-10 is-offset-1">
+      <form action="/songs" method="POST" class="card is-fullwidth">
+        <div class="card-header">
+          <h2 class="card-header-title">
+            Profile
+          </h2>
+        </div>
+        <div class="card-content">
+          <a href="{{ spotifyUrl }}" class="button is-success is-fullwidth">
+            Connect to Spotify
+            <span class="fa fa-fw fa-spotify"></span>
+          </a>
+        </div>
+
+        <footer class="card-footer">
+          <a class="card-footer-item" href="/songs">Back</a>
+          <button class="card-footer-item">Save</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

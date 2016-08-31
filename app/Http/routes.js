@@ -35,4 +35,9 @@ Route.resource('/set-lists', 'SetListController')
   .middleware('auth')
 
 Route.get('/set-lists/:id/add-song', 'SetList/PracticeSongController.create')
+  .middleware('auth')
 Route.post('/set-lists/:id/add-song', 'SetList/PracticeSongController.store')
+  .middleware('auth')
+
+Route.get('/profile', 'ProfileController.edit')
+  .middleware('auth')
