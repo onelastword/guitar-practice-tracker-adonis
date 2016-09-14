@@ -33,6 +33,7 @@ class SetListController {
       const setList = yield SetList.with('practiceSongs.song').
         where({ id, user_id: request.authUser.id }).firstOrFail()
 
+      yield response.sendView('set-list.show', {setList: setList.toJSON()})
     } catch (e) {
       yield request.with({
         warning: 'We couldn\'t find that set list...'
@@ -40,8 +41,6 @@ class SetListController {
 
       response.redirect(`/set-lists`)
     }
-
-    yield response.sendView('set-list.show', {setList: setList.toJSON()})
   }
 
   * update(request, response) {
