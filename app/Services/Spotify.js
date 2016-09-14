@@ -18,7 +18,6 @@ class Spotify {
     const [{body}] = yield get({
       url: `https://api.spotify.com/v1/search?q=${term}&page=${page}&type=track`,
       headers: {
-        Authentication: `Bearer ${this.user.access_token}`,
         Accept: 'application/json',
       },
       json: true,
