@@ -6,6 +6,7 @@ const request = require('request')
 const Env = use('Env')
 
 const post = thunkify(request.post)
+const get = thunkify(request.get)
 
 class ProfileController {
   * edit (request, response) {
@@ -24,8 +25,6 @@ class ProfileController {
         redirect_uri: redirect,
       };
 
-
-
       const [{body: socialData}] = yield post('https://accounts.spotify.com/api/token', {
         auth: {
           user: clientId,
@@ -35,14 +34,20 @@ class ProfileController {
         json: true
       });
 
-      console.log(socialData)
+      const expire_time = moment().add(socialData.expires_in, 'seconds');
 
-      const expire_time = moment().add(socialData.expires_in, 'seconds')
+      const [{ body: { id: spotify_id } }] = yield get('https://api.spotify.com/v1/me', {
+        auth: {
+          bearer: socialData.access_token,
+        },
+        json: true,
+      });
 
       request.authUser.fill({
         expire_time: expire_time.toDate(),
         access_token: socialData.access_token,
         refresh_token: socialData.refresh_token,
+        spotify_id,
       })
 
       yield request.authUser.save()
@@ -50,11 +55,13 @@ class ProfileController {
       yield request.with({
         success: 'Spotify login added!',
       }).flash()
+
+      return response.redirect('/profile')
     }
 
     const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=` +
       `${encodeURIComponent(clientId)}&response_type=code&redirect_uri=${encodeURIComponent(redirect)}`
-    yield response.sendView('profile.edit', {spotifyUrl})
+    yield response.sendView('profile.edit', { spotifyUrl })
   }
 }
 

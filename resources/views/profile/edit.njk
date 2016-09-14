@@ -11,16 +11,24 @@
           </h2>
         </div>
         <div class="card-content">
-          <a href="{{ spotifyUrl }}" class="button is-success is-fullwidth">
-            Connect to Spotify
-            <span class="fa fa-fw fa-spotify"></span>
-          </a>
-        </div>
+          <div class="columns">
+            <div class="column">
+              {% if currentUser.spotify_id %}
+              <h2>Spotify Connected!</h2>
 
-        <footer class="card-footer">
-          <a class="card-footer-item" href="/songs">Back</a>
-          <button class="card-footer-item">Save</button>
-        </footer>
+              <p>
+                <strong>Spotify Username:</strong>
+                {{ currentUser.spotify_id }}
+              </p>
+              {% else %}
+                <a href="{{ spotifyUrl }}" class="button is-success is-fullwidth">
+                  Connect to Spotify
+                  <span class="fa fa-fw fa-spotify"></span>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </div>
