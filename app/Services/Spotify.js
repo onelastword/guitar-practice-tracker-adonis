@@ -4,6 +4,7 @@ const moment = require('moment')
 const thunkify = require('thunkify')
 const request = require('request')
 const get = thunkify(request.get)
+const post = thunkify(request.post)
 
 class Spotify {
   constructor(user) {
@@ -12,6 +13,25 @@ class Spotify {
 
   * boot() {
 
+  }
+
+  * createPlaylist(playlistName) {
+    const username = this.user.spotify_id;
+
+    const [{body}] = yield post(`https://api.spotify.com/v1/users/${username}/playlists`, {
+      body: {
+        name: playlistName,
+        public: false
+      },
+
+      auth: {
+        bearer: this.user.access_token,
+      },
+
+      json: true,
+    });
+
+    return body;
   }
 
   * search(term, page = 1) {

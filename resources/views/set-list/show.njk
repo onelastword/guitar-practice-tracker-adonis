@@ -7,6 +7,7 @@
       <nav class="panel">
         <div class="panel-heading is-flex is-space-between">
           <h2 class="panel-heading-title">{{setList.title}} - {{setList.date}}</h2>
+
           <a href="/set-lists/{{setList.id}}/add-song" class="button is-success">
             <span class="fa fa-plus"></span>
           </a>
@@ -24,6 +25,13 @@
             </div>
           </div>
         {% endfor %}
+
+        <div class="panel-block">
+          <a href="/set-lists/{{setList.id}}/sync-spotify" class="button is-fullwidth is-success">
+            Sync To Spotify
+            <span class="fa fa-fw fa-spotify"></span>
+          </a>
+        </div>
       </nav>
     </div>
   </div>

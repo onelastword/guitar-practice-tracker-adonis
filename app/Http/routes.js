@@ -38,6 +38,9 @@ Route.resource('/songs', 'SongController')
 Route.resource('/set-lists', 'SetListController')
   .middleware('auth')
 
+Route.get('/set-lists/:id/sync-spotify', 'SetList/SpotifyController.sync')
+  .middleware('auth')
+
 Route.get('/set-lists/:id/add-song', 'SetList/PracticeSongController.create')
   .middleware('auth')
 Route.post('/set-lists/:id/add-song', 'SetList/PracticeSongController.store')
