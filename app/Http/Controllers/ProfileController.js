@@ -58,9 +58,12 @@ class ProfileController {
 
       return response.redirect('/profile')
     }
-
-    const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=` +
-      `${encodeURIComponent(clientId)}&response_type=code&redirect_uri=${encodeURIComponent(redirect)}`
+    const scopes = 'playlist-modify-private playlist-modify-public'
+    const spotifyUrl = `https://accounts.spotify.com/authorize` +
+      `?client_id=${encodeURIComponent(clientId)}` +
+      `&response_type=code&` +
+      `redirect_uri=${encodeURIComponent(redirect)}` +
+      `&scope=${encodeURIComponent(scopes)}`
     yield response.sendView('profile.edit', { spotifyUrl })
   }
 }
