@@ -6,13 +6,48 @@ const request = require('request')
 const get = thunkify(request.get)
 const post = thunkify(request.post)
 
+const Env = use('Env')
+
+const secret = Env.get('SPOTIFY_SECRET')
+const clientId = Env.get('SPOTIFY_CLIENT_ID')
+const redirect = Env.get('SPOTIFY_REDIRECT_URL')
+
 class Spotify {
   constructor(user) {
     this.user = user
   }
 
   * boot() {
+    if (this.user.expire_time < Date.now()) {
+      yield this.refreshAccessToken(this.user.refresh_token)
+      console.log('Please refresh token')
+    }
+  }
 
+  * refreshAccessToken(refreshToken) {
+    const form = {
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,
+    };
+
+    const [{body: socialData}] = yield post('https://accounts.spotify.com/api/token', {
+      auth: {
+        user: clientId,
+        pass: secret,
+      },
+      form,
+      json: true
+    });
+
+    const expire_time = moment().add(socialData.expires_in, 'seconds');
+
+    this.user.fill({
+      expire_time: expire_time.toDate(),
+      access_token: socialData.access_token,
+      refresh_token: socialData.refresh_token,
+    })
+
+    yield this.user.save()
   }
 
   * createPlaylist(playlistName) {
@@ -32,6 +67,10 @@ class Spotify {
     });
 
     return body;
+  }
+
+  * syncPlaylistSongs(playlistId, songIds) {
+    console.log(songIds)
   }
 
   * search(term, page = 1) {

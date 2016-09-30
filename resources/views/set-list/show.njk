@@ -28,7 +28,11 @@
 
         <div class="panel-block">
           <a href="/set-lists/{{setList.id}}/sync-spotify" class="button is-fullwidth is-success">
-            Sync To Spotify
+            {% if setList.spotify_id %}
+              Sync To Spotify
+            {% else %}
+              Create Spotify Playlist
+            {% endif %}
             <span class="fa fa-fw fa-spotify"></span>
           </a>
         </div>

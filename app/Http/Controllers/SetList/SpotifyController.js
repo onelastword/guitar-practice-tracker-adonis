@@ -11,12 +11,19 @@ class SpotifyController {
 
     const spotify = new Spotify(request.currentUser);
     // In case the user needs to refresh tokens
-    spotify.boot();
+    yield spotify.boot();
 
-    const result = yield spotify.createPlaylist(setlist.title);
+    if (!setlist.spotify_id) {
+      const result = yield spotify.createPlaylist(setlist.title);
 
-    setlist.spotify_id = result.id;
-    yield setlist.save();
+      setlist.spotify_id = result.id;
+      yield setlist.save();
+    }
+
+    const songs = yield setlist.practiceSongs().with('song').fetch();
+    const songIds = songs.map((practiceSong) => practiceSong.toJSON().song.spotify_id)
+      .value()
+    yield spotify.syncPlaylistSongs(setlist.spotify_id, songIds)
 
     response.redirect(`/set-lists/${setlist.id}`)
   }
