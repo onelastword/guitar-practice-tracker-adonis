@@ -22,7 +22,7 @@ class SongController {
   }
 
   * store(request, response) {
-    const input = request.only('title', 'artist', 'spotify_link');
+    const input = request.only('title', 'artist', 'spotify_link', 'spotify_id');
 
     const validation = yield Validator.validate(input, rules)
 
