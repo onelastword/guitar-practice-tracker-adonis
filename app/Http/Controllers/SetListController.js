@@ -71,19 +71,17 @@ class SetListController {
       const setList = yield SetList.with('practiceSongs.song').
         where({ id, user_id: request.authUser.id }).firstOrFail()
 
+        yield setList.delete();
+
+        yield request.with({
+          success: 'Set List Deleted!'
+        }).flash();
     } catch (e) {
       yield request.with({
         warning: 'We couldn\'t find that set list...'
       }).flash();
-
-      response.redirect(`/set-lists`)
     }
 
-    yield setList.delete();
-
-    yield request.with({
-      success: 'Set List Deleted!'
-    }).flash();
 
     response.redirect('back');
   }
