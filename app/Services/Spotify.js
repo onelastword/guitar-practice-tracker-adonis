@@ -5,6 +5,7 @@ const thunkify = require('thunkify')
 const request = require('request')
 const get = thunkify(request.get)
 const post = thunkify(request.post)
+const put = thunkify(request.put)
 
 const Env = use('Env')
 
@@ -70,7 +71,19 @@ class Spotify {
   }
 
   * syncPlaylistSongs(playlistId, songIds) {
-    console.log(songIds)
+    const uris = songIds.map((id) => `spotify:track:${id}`)
+
+    const [{body}] = yield put({
+      url: `https://api.spotify.com/v1/users/${this.user.spotify_id}/playlists/${playlistId}/tracks`,
+      auth: {
+        bearer: this.user.access_token,
+      },
+      body: { uris },
+      headers: {
+        Accept: 'application/json',
+      },
+      json: true,
+    })
   }
 
   * search(term, page = 1) {
