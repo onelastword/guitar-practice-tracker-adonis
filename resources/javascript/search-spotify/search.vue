@@ -28,26 +28,33 @@
       </div>
 
       <div class="column is-6">
-        <div class="panel">
-          <div class="panel-block" v-for="track in tracks">
-            <div class="is-flex is-space-between">
-              <p class="song-details">
-                <strong>{{track.artists[0].name}}</strong> - {{track.name}}
-              </p>
+        <template v-if="showTracks">
+          <div class="panel">
+            <div class="panel-block" v-for="track in tracks">
+              <div class="is-flex is-space-between">
+                <p class="song-details">
+                  <strong>{{track.artists[0].name}}</strong> - {{track.name}}
+                </p>
 
-              <div class="song-actions">
-                <form action="/songs" method="POST">
-                  {{ csrfField }}
-                  <input type="hidden" value="{{ track.artists[0].name }}" name="artist">
-                  <input type="hidden" value="{{ track.name }}" name="title">
-                  <input type="hidden" value="{{ track.external_urls.spotify }}" name="spotify_link">
-                  <input type="hidden" value="{{ track.id }}" name="spotify_id">
-                  <button href="/song-details" class="button">Add</button>
-                </form>
+                <div class="song-actions">
+                  <form action="/songs" method="POST">
+                    {{ csrfField }}
+                    <input type="hidden" value="{{ track.artists[0].name }}" name="artist">
+                    <input type="hidden" value="{{ track.name }}" name="title">
+                    <input type="hidden" value="{{ track.external_urls.spotify }}" name="spotify_link">
+                    <input type="hidden" value="{{ track.id }}" name="spotify_id">
+                    <button href="/song-details" class="button">Add</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </template>
+        <template v-else>
+          <div class="has-text-centered">
+            <span class="fa fa-refresh fa-spin fa-3x fa-fw"></span>
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -57,6 +64,7 @@
 export default {
   data() {
     return {
+      isLoading: false,
       searchTerm: '',
       flashMessages: {
         errors: []
@@ -64,8 +72,15 @@ export default {
       tracks: [],
     };
   },
+  computed: {
+    showTracks() {
+      return this.tracks.length && !this.isLoading;
+    }
+  },
   methods: {
     submit() {
+      this.isLoading = true;
+
       fetch(`/songs/search-spotify?search=${this.searchTerm}`, {
         credentials: 'same-origin',
         headers: {
@@ -74,6 +89,8 @@ export default {
       })
         .then((res) => res.json())
         .then((data) => {
+          this.isLoading = false;
+
           if (data.tracks) {
             this.tracks = data.tracks;
           }
