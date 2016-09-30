@@ -6,6 +6,7 @@ const CssOptimizer = require('broccoli-csso');
 const Babel = require('broccoli-babel-transpiler');
 const rm = require('broccoli-stew').rm;
 const browserify = require('broccoli-browserify-cache');
+const vueify = require('vueify');
 
 const stylePaths = [
   'resources/styles',
@@ -19,6 +20,9 @@ const babelScript = new Babel(appNoSass);
 const appScript = browserify(babelScript, {
   entries: ['./index'],
   outputFile: 'app.js',
+  config(brow) {
+    brow.transform(vueify);
+  },
 });
 
 const compiledSass = new Sass(stylePaths, 'app.scss', 'app.css', {});
