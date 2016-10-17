@@ -8,7 +8,10 @@
     "assets:build": "ember build -o public/dist",
     "assets:watch": "ember build -w -o public/dist"
   },
-  "author": "",
+  "engines": {
+    "node": "6.2.2"
+  },
+  "author": "Ryan Tablada <ryan.tablada@gmail.com>",
   "license": "MIT",
   "description": "",
   "private": true,
